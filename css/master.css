@@ -1,0 +1,30 @@
+.container {
+  margin: 35px auto;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  background-color: black;
+  height: 80vh;
+  width: 55vh;
+  border: 5px solid yellow;
+  border-radius: 10px;
+}
+
+.buttons {
+  margin-top: 25px;
+}
+
+.displayText {
+  width: 100%;
+  height: 100%;
+  font-size: 35px;
+  text-align: right;
+}
+
+.display {
+  background-color: white;
+  margin-top: 15px;
+  margin: inherit auto;
+  width: 80%;
+  height: 35px;
+}
