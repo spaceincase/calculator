@@ -10,14 +10,44 @@
   border-radius: 10px;
 }
 
-.buttons {
-  margin-top: 25px;
+.b0 {
+  grid-column: 1 / 3;
+  grid-row: 5;
+}
+.bdecimal {
+  grid-column: 3;
+  grid-row: 5;
+}
+.bequals {
+  grid-column: 4;
+  grid-row: 4 / 6
+}
+.badd {
+  grid-column: 4;
+  grid-row: 2 / 4;
+}
+
+
+.btnContainer {
+  margin-top: 10px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
+  height: 75%;
+  width: 85%;
+}
+
+button {
+  height: 100%;
+  width: 100%;
+  border: 1px solid black;
+  font-size: 6vh;
 }
 
 .displayText {
   width: 100%;
   height: 100%;
-  font-size: 35px;
+  font-size: 8vh;
   text-align: right;
 }
 
@@ -25,6 +55,6 @@
   background-color: white;
   margin-top: 15px;
   margin: inherit auto;
-  width: 80%;
-  height: 35px;
+  width: 85%;
+  height: 10%;
 }
