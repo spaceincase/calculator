@@ -58,3 +58,6 @@ button {
   width: 85%;
   height: 10%;
 }
+button:focus {
+  outline: none;
+}
