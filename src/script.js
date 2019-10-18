@@ -98,7 +98,7 @@ function solveEquation(num1, op, num2) {
     return answer.toExponential(2);
   } else {
     if(answer % 1 !== 0) {
-      return answer.toFixed(4);
+      return parseFloat(answer);
     } else {
       return answer;
     }
