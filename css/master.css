@@ -49,6 +49,8 @@ button {
   height: 100%;
   font-size: 8vh;
   text-align: right;
+  text-overflow: clip;
+  overflow: hidden;
 }
 
 .display {
