@@ -1,7 +1,7 @@
 const container = document.querySelector('.container');
 const displayText = document.querySelector('.displayText')
 initButtons();
-
+const btnsOp = document.querySelectorAll('.operator')
 const buttons = document.querySelector('.btnContainer')
 var operatorLast = false;
 var operator = "";
@@ -69,7 +69,14 @@ function equals() {
 }
 
 function decimal() {
-  if (!displayText.innerHTML.includes('.')) displayText.innerHTML += '.';
+  if(operatorLast) {
+    displayText.innerHTML = "0."
+    operatorLast = false;
+  } else {
+    if (!displayText.innerHTML.includes('.')) displayText.innerHTML += '.';
+    operatorLast = false;
+  }
+
 }
 
 function solveEquation(num1, op, num2) {
@@ -87,10 +94,14 @@ function solveEquation(num1, op, num2) {
     case '/':
       answer = num1 / num2;
   }
-  if(answer>99999999) {
-    return answer.toExponential();
+  if(answer>9999999) {
+    return answer.toExponential(2);
   } else {
-    return answer;
+    if(answer % 1 !== 0) {
+      return answer.toFixed(4);
+    } else {
+      return answer;
+    }
   }
 }
 
