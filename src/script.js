@@ -11,65 +11,86 @@ buttons.addEventListener('click', (e) => {
   if (e.target.matches('button')) {
     const key = e.target
     if (key.classList.contains('operator')) {
-        if(!operatorLast && operand1 !== 0) {
-          operand1 = solveEquation(operand1, operator, parseFloat(displayText.innerHTML))
-          displayText.innerHTML = operand1;
-          operator = "";
-          operatorLast = false;
-        } else if(operator == "=") {
-          operator = key.innerHTML
-
-        }
-        operatorLast = true;
-        operator = key.innerHTML
-        operand1 = parseFloat(displayText.innerHTML);
-
+      operate(key);
     } else if (key.classList.contains('bdecimal')) {
-
-        if (!displayText.innerHTML.includes('.')) displayText.innerHTML += '.';
-
+      decimal();
     } else if (key.classList.contains('bC')) {
-
-        displayText.innerHTML = "0";
-        operatorLast = false;
-        operand1 = 0;
-        operator = ""
-
+      clear();
     } else if (key.classList.contains('bequals')) {
-
-        operand1 = solveEquation(operand1, operator, parseFloat(displayText.innerHTML))
-        displayText.innerHTML = operand1;
-        operator = "=";
-        operatorLast = true;
-
+      equals();
     } else {
-
-        if (displayText.innerHTML == '0' || operatorLast == true) {
-          displayText.innerHTML = key.innerHTML
-          operatorLast = false;
-        } else if (operator == "=") {
-          operand1 = 0;
-          displayText.innerHTML += key.innerHTML;
-        } else {
-          displayText.innerHTML += key.innerHTML;
-        }
+      number(key);
     }
   }
 });
 
+function number(key) {
+  if (operator == "=") {
+    operand1 = 0;
+    displayText.innerHTML = key.innerHTML;
+    operatorLast = false;
+    operator = ""
+  } else if (displayText.innerHTML == '0' || operatorLast == true) {
+    displayText.innerHTML = key.innerHTML
+    operatorLast = false;
+  } else {
+    displayText.innerHTML += key.innerHTML;
+    operatorLast = false;
+  }
+}
+
+function operate(key) {
+  if (!operatorLast && operand1 !== 0) {
+    operand1 = solveEquation(operand1, operator, parseFloat(displayText.innerHTML));
+    displayText.innerHTML = operand1;
+    operator = "";
+    operatorLast = false;
+  } else if (operator == "=") {
+    operator = key.innerHTML
+
+  }
+  operatorLast = true;
+  operator = key.innerHTML
+  operand1 = parseFloat(displayText.innerHTML);
+}
+
+function clear(key) {
+  displayText.innerHTML = "0";
+  operatorLast = false;
+  operand1 = 0;
+  operator = ""
+}
+
+function equals() {
+  operand1 = solveEquation(operand1, operator, parseFloat(displayText.innerHTML))
+  displayText.innerHTML = operand1;
+  operator = "=";
+  operatorLast = true;
+}
+
+function decimal() {
+  if (!displayText.innerHTML.includes('.')) displayText.innerHTML += '.';
+}
+
 function solveEquation(num1, op, num2) {
+  var answer;
   switch (op) {
     case '+':
-      return num1 + num2;
+      answer = num1 + num2;
       break;
     case '-':
-      return num1 - num2;
+      answer = num1 - num2;
       break;
     case '*':
-      return num1 * num2;
+      answer = num1 * num2;
       break
     case '/':
-      return num1 / num2;
+      answer = num1 / num2;
+  }
+  if(answer>99999999) {
+    return answer.toExponential();
+  } else {
+    return answer;
   }
 }
 
