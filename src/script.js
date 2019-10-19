@@ -26,31 +26,31 @@ var operand1 = 0;
 document.addEventListener('keydown', e => {
   switch (e.key) {
     case '+':
-      document.querySelector(`.badd`).classList.toggle('active')
+      document.querySelector(`.badd`).classList.add('active')
       operate(e.key);
       break;
     case '-':
-      document.querySelector(`.bsubtract`).classList.toggle('active')
+      document.querySelector(`.bsubtract`).classList.add('active')
       operate(e.key);
       break;
     case '*':
-      document.querySelector(`.bmultiply`).classList.toggle('active')
+      document.querySelector(`.bmultiply`).classList.add('active')
       operate(e.key);
       break;
     case '/':
-      document.querySelector(`.bdivide`).classList.toggle('active')
+      document.querySelector(`.bdivide`).classList.add('active')
       operate(e.key);
       break;
     case '.':
-      document.querySelector(`.bdecimal`).classList.toggle('active')
+      document.querySelector(`.bdecimal`).classList.add('active')
       decimal();
       break;
     case 'Enter':
-      document.querySelector(`.bequals`).classList.toggle('active')
+      document.querySelector(`.bequals`).classList.add('active')
       equals();
       break;
     case 'Backspace':
-      document.querySelector(`.bC`).classList.toggle('active')
+      document.querySelector(`.bC`).classList.add('active')
       clear();
       break;
     case '0':
