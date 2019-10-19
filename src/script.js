@@ -2,16 +2,62 @@ const container = document.querySelector('.container');
 const displayText = document.querySelector('.displayText')
 initButtons();
 const btnsOp = document.querySelectorAll('.operator')
+const btns = document.querySelectorAll('button');
+btns.forEach(btn => btn.addEventListener('transitionend', e => e.target.classList.remove('active')))
 const buttons = document.querySelector('.btnContainer')
 var operatorLast = false;
 var operator = "";
 var operand1 = 0;
-
-buttons.addEventListener('click', (e) => {
+document.addEventListener('keydown', e => {
+  switch (e.key) {
+    case '+':
+      document.querySelector(`.badd`).classList.add('active')
+      operate(e.key);
+      break;
+    case '-':
+      document.querySelector(`.bsubtract`).classList.add('active')
+      operate(e.key);
+      break;
+    case '*':
+      document.querySelector(`.bmultiply`).classList.add('active')
+      operate(e.key);
+      break;
+    case '/':
+      document.querySelector(`.bdivide`).classList.add('active')
+      operate(e.key);
+      break;
+    case '.':
+      document.querySelector(`.bdecimal`).classList.add('active')
+      decimal();
+      break;
+    case 'Enter':
+      document.querySelector(`.bequals`).classList.add('active')
+      equals();
+      break;
+    case 'Delete':
+      document.querySelector(`.bC`).classList.add('active')
+      clear();
+      break;
+    case '0':
+    case '1':
+    case '2':
+    case '3':
+    case '4':
+    case '5':
+    case '6':
+    case '7':
+    case '8':
+    case '9':
+      document.querySelector(`.b${e.key}`).classList.add('active')
+      number(e.key);
+  }
+  console.log(e.key);
+});
+buttons.addEventListener('click', e => {
+  const key = e.target
   if (e.target.matches('button')) {
-    const key = e.target
     if (key.classList.contains('operator')) {
-      operate(key);
+      operate(key.innerHTML);
     } else if (key.classList.contains('bdecimal')) {
       decimal();
     } else if (key.classList.contains('bC')) {
@@ -19,22 +65,23 @@ buttons.addEventListener('click', (e) => {
     } else if (key.classList.contains('bequals')) {
       equals();
     } else {
-      number(key);
+      number(key.innerHTML);
     }
   }
+  key.classList.toggle('active');
 });
 
 function number(key) {
   if (operator == "=") {
     operand1 = 0;
-    displayText.innerHTML = key.innerHTML;
+    displayText.innerHTML = key;
     operatorLast = false;
     operator = ""
   } else if (displayText.innerHTML == '0' || operatorLast == true) {
-    displayText.innerHTML = key.innerHTML
+    displayText.innerHTML = key
     operatorLast = false;
   } else {
-    displayText.innerHTML += key.innerHTML;
+    displayText.innerHTML += key;
     operatorLast = false;
   }
 }
@@ -46,11 +93,12 @@ function operate(key) {
     operator = "";
     operatorLast = false;
   } else if (operator == "=") {
-    operator = key.innerHTML
+    operatorLast = true;
+    operator = key
 
   }
   operatorLast = true;
-  operator = key.innerHTML
+  operator = key
   operand1 = parseFloat(displayText.innerHTML);
 }
 
@@ -62,10 +110,15 @@ function clear(key) {
 }
 
 function equals() {
-  operand1 = solveEquation(operand1, operator, parseFloat(displayText.innerHTML))
-  displayText.innerHTML = operand1;
-  operator = "=";
-  operatorLast = true;
+  if(operator !== "" || operator !== "=") {
+    operand1 = solveEquation(operand1, operator, parseFloat(displayText.innerHTML))
+    displayText.innerHTML = operand1;
+    operator = "=";
+    operatorLast = true;
+  } else {
+    operator = "";
+    operatorLast = false;
+  }
 }
 
 function decimal() {
