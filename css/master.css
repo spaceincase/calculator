@@ -83,7 +83,9 @@ button.active {
   transform: translateY(2px);
   background-color: rgb(255, 146, 3);
 }
-
+button:hover {
+  outline: none;
+}
 
 .display {
   margin-top: 15px;
