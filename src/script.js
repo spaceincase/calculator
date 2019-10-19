@@ -162,7 +162,7 @@ function solveEquation(num1, op, num2) {
       break;
     case '*':
       answer = num1 * num2;
-      break
+      break;
     case '/':
       answer = num1 / num2;
   }
@@ -172,7 +172,7 @@ function solveEquation(num1, op, num2) {
   } else {
     if (answer % 1 !== 0) {
       console.log(a[0].length)
-      return parseFloat(answer).toFixed(7 - a[0].length);
+      return parseFloat(answer.toFixed(7 - a[0].length));
     } else {
       return answer;
     }
