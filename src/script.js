@@ -34,7 +34,7 @@ document.addEventListener('keydown', e => {
       document.querySelector(`.bequals`).classList.add('active')
       equals();
       break;
-    case 'Delete':
+    case 'Backspace':
       document.querySelector(`.bC`).classList.add('active')
       clear();
       break;
