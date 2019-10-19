@@ -46,3 +46,12 @@ table {
 	border-collapse: collapse;
 	border-spacing: 0;
 }
+@font-face {
+    font-family: 'digitalDream';
+    src: url('digitaldreamfat-webfont.woff2') format('woff2'),
+         url('digitaldreamfat-webfont.woff') format('woff'),
+         url('digitaldreamfat-webfont.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+
+}

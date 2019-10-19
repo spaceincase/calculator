@@ -1,3 +1,5 @@
+
+
 .container {
   box-shadow: 0px 0px 5px 0px black;
   touch-action: none;
@@ -63,6 +65,7 @@ button {
 }
 
 .displayText {
+  font-family: "digitalDream";
   cursor: default;
   border: none;
   box-shadow: 0px 0px 3px 1px black;
@@ -77,7 +80,6 @@ button {
   text-align: right;
   text-overflow: clip;
   overflow: hidden;
-  font-family: "Electrolize";
 }
 
 .bmultiply {
