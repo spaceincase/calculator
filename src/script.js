@@ -85,6 +85,7 @@ btnContainer.addEventListener('click', e => {
     }
   }
   key.classList.add('active');
+  e.target.blur();
 });
 
 
@@ -98,7 +99,7 @@ function number(key) {
     displayText.value = key;
     operatorLast = false;
   } else {
-    if(displayText.value.length < 7) displayText.value += key;
+    if (displayText.value.length < 7) displayText.value += key;
     operatorLast = false;
   }
 }
@@ -128,7 +129,7 @@ function clear(key) {
 }
 
 function equals() {
-  if(operator !== "" || operator !== "=") {
+  if (operator !== "" || operator !== "=") {
     operand1 = solveEquation(operand1, operator, parseFloat(displayText.value))
     displayText.value = operand1;
     operator = "=";
@@ -140,7 +141,7 @@ function equals() {
 }
 
 function decimal() {
-  if(operatorLast) {
+  if (operatorLast) {
     displayText.value = "0."
     operatorLast = false;
   } else {
@@ -165,11 +166,13 @@ function solveEquation(num1, op, num2) {
     case '/':
       answer = num1 / num2;
   }
-  if(answer>9999999) {
+  var a = answer.toString().split(".");
+  if (answer > 99999999) {
     return answer.toExponential(2);
   } else {
-    if(answer % 1 !== 0) {
-      return parseFloat(answer);
+    if (answer % 1 !== 0) {
+      console.log(a[0].length)
+      return parseFloat(answer).toFixed(7 - a[0].length);
     } else {
       return answer;
     }

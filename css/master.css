@@ -83,9 +83,7 @@ button.active {
   transform: translateY(2px);
   background-color: rgb(255, 146, 3);
 }
-button:hover {
-  background-color: rgb(255, 146, 3);
-}
+
 
 .display {
   margin-top: 15px;
@@ -93,9 +91,7 @@ button:hover {
   width: 85%;
   height: 10%;
 }
-button:focus {
-  outline: none;
-}
+
 body {
   background-color: #89aac3;
   display: flex;
