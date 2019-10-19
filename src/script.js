@@ -112,11 +112,13 @@ function number(key) {
 
 function operate(key) {
   if (!operatorLast && operand1 !== 0) {
+    //solves problem should the user hit another operator instead of equals
     operand1 = solveEquation(operand1, operator, parseFloat(displayText.value));
     displayText.value = operand1;
     operator = "";
     operatorLast = false;
   } else if (operator == "=") {
+    //sets the operator
     operatorLast = true;
     operator = key
 
