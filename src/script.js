@@ -84,7 +84,7 @@ btnContainer.addEventListener('click', e => {
       number(key.innerHTML);
     }
   }
-  key.classList.toggle('active');
+  key.classList.add('active');
 });
 
 
