@@ -50,6 +50,10 @@ document.addEventListener('keydown', e => {
       equals();
       break;
     case 'Backspace':
+      document.querySelector(`.bAC`).classList.add('active')
+      backspace();
+      break;
+    case 'Delete':
       document.querySelector(`.bC`).classList.add('active')
       clear();
       break;
@@ -80,6 +84,8 @@ btnContainer.addEventListener('click', e => {
       clear();
     } else if (key.classList.contains('bequals')) {
       equals();
+    } else if (key.classList.contains('bAC')) {
+      backspace();
     } else {
       number(key.innerHTML);
     }
@@ -88,7 +94,7 @@ btnContainer.addEventListener('click', e => {
   e.target.blur();
 });
 
-
+//appends digits to displayText
 function number(key) {
   if (operator == "=") {
     operand1 = 0;
@@ -140,6 +146,10 @@ function equals() {
   }
 }
 
+function backspace() {
+  if(displayText.value.length > 1) displayText.value = displayText.value.substr(0, displayText.value.length -1);
+}
+
 function decimal() {
   if (operatorLast) {
     displayText.value = "0."
@@ -182,15 +192,15 @@ function solveEquation(num1, op, num2) {
 
 function initButtons() {
   const btnContainer = document.querySelector('.btnContainer');
-  const btnLabels = ['C', '/', '*', '-', '+', '=', '.', 7, 8, 9, 4, 5, 6, 1, 2, 3, 0];
-  const btnClasses = ['C', 'divide', 'multiply', 'subtract', 'add', 'equals', 'decimal', 7, 8, 9, 4, 5, 6, 1, 2, 3, 0]
-  for (i = 0; i < 17; i++) {
+  const btnLabels = ['C', 'AC', '/', '*', '-', '+', '=', '.', 7, 8, 9, 4, 5, 6, 1, 2, 3, 0];
+  const btnClasses = ['C', 'AC', 'divide', 'multiply', 'subtract', 'add', 'equals', 'decimal', 7, 8, 9, 4, 5, 6, 1, 2, 3, 0];
+  for (i = 0; i < 18; i++) {
     var btn = document.createElement("BUTTON");
     if (i < btnLabels.length) {
       btn.className = `b${btnClasses[i]}`;
       btn.innerHTML = btnLabels[i];
       if (typeof btnLabels[i] == "number") btn.className += " number";
-      if (btn.innerHTML !== "C" && btn.innerHTML !== "." && btn.innerHTML !== "=" && isNaN(btn.innerHTML)) btn.className += " operator";
+      if (btn.innerHTML !== "C" && btn.innerHTML !== 'AC' && btn.innerHTML !== "." && btn.innerHTML !== "=" && isNaN(btn.innerHTML)) btn.className += " operator";
     }
     btnContainer.appendChild(btn);
   }
