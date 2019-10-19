@@ -1,15 +1,14 @@
 .container {
+  box-shadow: 0px 0px 5px 0px black;
   touch-action: none;
-  margin: 35px auto;
   display: flex;
   align-items: center;
   flex-direction: column;
   height: 80vh;
   width: 55vh;
   border-radius: 10px;
-  background-image: linear-gradient(to bottom right, rgb(92, 246, 66), blue);
-  background-repeat: no-repeat;
-  background-size: cover;
+  background-color: #0000005e;
+  margin-top: 4vh;
 }
 
 .b0 {
@@ -21,6 +20,8 @@
   grid-row: 5;
 }
 .bequals {
+  background-color: #d27e1d;
+  border-radius: 15vh%;
   grid-column: 4;
   grid-row: 4 / 6
 }
@@ -43,8 +44,9 @@
 }
 
 button {
+  background-color: #3ed076;
   touch-action: manipulation;
-  box-shadow: 0px 3px 5px 0px black;
+  box-shadow: 0px 3px 3px 0px #33333378;
   height: 100%;
   width: 100%;
   border-radius: 4vh;
@@ -57,9 +59,13 @@ button {
 }
 
 .displayText {
-  box-shadow: 0px 0px 5px 1px black;
+  cursor: default;
+  border: none;
+  box-shadow: 0px 0px 3px 1px black;
   border-radius: 2vh;
-  color: white;
+  background-color: rgba(255, 255, 255, 0.47);
+  color: black;
+  max-width: 100%;
   width: 100%;
   height: 100%;
   font-size: 8vh;
@@ -69,14 +75,15 @@ button {
   overflow: hidden;
   font-family: "Electrolize";
 }
-.bequals {
-  background-color: #1bff00d9;
-}
+
 .bmultiply {
   padding-top: 2vh;
 }
 button.active {
   transform: translateY(2px);
+  background-color: rgb(255, 146, 3);
+}
+button:hover {
   background-color: rgb(255, 146, 3);
 }
 
@@ -89,6 +96,33 @@ button.active {
 button:focus {
   outline: none;
 }
-html {
-    background-color: black;
+body {
+  background-color: #89aac3;
+  display: flex;
+  justify-content: center;
+}
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.footer {
+    padding-top: 12vh;
+    z-index: -1;
+    font-family: 'Indie Flower';
+    font-size: 5vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    height: 10vh;
+    background-color: #75a3c5;
+}
+.github {
+  margin-left: 2vh;
+  height: 6vh;
+  width: 6vh;
 }

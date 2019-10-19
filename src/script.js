@@ -1,41 +1,56 @@
+/* Calculator for The Odin Project
+- Web Dev 101 -
+Bradley Peterson 2019
+*/
+
+
+//set consts for DOM elements.
 const container = document.querySelector('.container');
 const displayText = document.querySelector('.displayText')
+
+//create calculator buttons
 initButtons();
+
+//set consts for calculator buttons.
 const btnsOp = document.querySelectorAll('.operator')
 const btns = document.querySelectorAll('button');
 btns.forEach(btn => btn.addEventListener('transitionend', e => e.target.classList.remove('active')))
-const buttons = document.querySelector('.btnContainer')
+const btnContainer = document.querySelector('.btnContainer')
+
+//vars for keeping track of user input.
 var operatorLast = false;
 var operator = "";
 var operand1 = 0;
+
+//keyboard event listeners.
 document.addEventListener('keydown', e => {
   switch (e.key) {
     case '+':
-      document.querySelector(`.badd`).classList.add('active')
+      document.querySelector(`.badd`).classList.toggle('active')
       operate(e.key);
       break;
     case '-':
-      document.querySelector(`.bsubtract`).classList.add('active')
+      document.querySelector(`.bsubtract`).classList.toggle('active')
       operate(e.key);
       break;
     case '*':
-      document.querySelector(`.bmultiply`).classList.add('active')
+      document.querySelector(`.bmultiply`).classList.toggle('active')
       operate(e.key);
       break;
     case '/':
-      document.querySelector(`.bdivide`).classList.add('active')
+      document.querySelector(`.bdivide`).classList.toggle('active')
       operate(e.key);
       break;
     case '.':
-      document.querySelector(`.bdecimal`).classList.add('active')
+      document.querySelector(`.bdecimal`).classList.toggle('active')
       decimal();
       break;
     case 'Enter':
-      document.querySelector(`.bequals`).classList.add('active')
+      document.querySelector(`.bequals`).classList.toggle('active')
       equals();
       break;
     case 'Backspace':
-      document.querySelector(`.bC`).classList.add('active')
+      document.querySelector(`.bC`).classList.toggle('active')
       clear();
       break;
     case '0':
@@ -51,9 +66,8 @@ document.addEventListener('keydown', e => {
       document.querySelector(`.b${e.key}`).classList.add('active')
       number(e.key);
   }
-  console.log(e.key);
 });
-buttons.addEventListener('click', e => {
+btnContainer.addEventListener('click', e => {
   const key = e.target
   if (e.target.matches('button')) {
     if (key.classList.contains('operator')) {
@@ -74,22 +88,22 @@ buttons.addEventListener('click', e => {
 function number(key) {
   if (operator == "=") {
     operand1 = 0;
-    displayText.innerHTML = key;
+    displayText.value = key;
     operatorLast = false;
     operator = ""
-  } else if (displayText.innerHTML == '0' || operatorLast == true) {
-    displayText.innerHTML = key
+  } else if (displayText.value == '0' || operatorLast == true) {
+    displayText.value = key;
     operatorLast = false;
   } else {
-    displayText.innerHTML += key;
+    if(displayText.value.length < 7) displayText.value += key;
     operatorLast = false;
   }
 }
 
 function operate(key) {
   if (!operatorLast && operand1 !== 0) {
-    operand1 = solveEquation(operand1, operator, parseFloat(displayText.innerHTML));
-    displayText.innerHTML = operand1;
+    operand1 = solveEquation(operand1, operator, parseFloat(displayText.value));
+    displayText.value = operand1;
     operator = "";
     operatorLast = false;
   } else if (operator == "=") {
@@ -99,11 +113,12 @@ function operate(key) {
   }
   operatorLast = true;
   operator = key
-  operand1 = parseFloat(displayText.innerHTML);
+  operand1 = parseFloat(displayText.value);
 }
 
+
 function clear(key) {
-  displayText.innerHTML = "0";
+  displayText.value = "0";
   operatorLast = false;
   operand1 = 0;
   operator = ""
@@ -111,8 +126,8 @@ function clear(key) {
 
 function equals() {
   if(operator !== "" || operator !== "=") {
-    operand1 = solveEquation(operand1, operator, parseFloat(displayText.innerHTML))
-    displayText.innerHTML = operand1;
+    operand1 = solveEquation(operand1, operator, parseFloat(displayText.value))
+    displayText.value = operand1;
     operator = "=";
     operatorLast = true;
   } else {
@@ -123,10 +138,10 @@ function equals() {
 
 function decimal() {
   if(operatorLast) {
-    displayText.innerHTML = "0."
+    displayText.value = "0."
     operatorLast = false;
   } else {
-    if (!displayText.innerHTML.includes('.')) displayText.innerHTML += '.';
+    if (!displayText.value.includes('.')) displayText.value += '.';
     operatorLast = false;
   }
 
