@@ -67,6 +67,8 @@ document.addEventListener('keydown', e => {
       number(e.key);
   }
 });
+
+//mouse event listeners
 btnContainer.addEventListener('click', e => {
   const key = e.target
   if (e.target.matches('button')) {
@@ -84,6 +86,7 @@ btnContainer.addEventListener('click', e => {
   }
   key.classList.toggle('active');
 });
+
 
 function number(key) {
   if (operator == "=") {
