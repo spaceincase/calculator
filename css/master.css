@@ -83,7 +83,7 @@ button.active {
   transform: translateY(2px);
   background-color: rgb(255, 146, 3);
 }
-button:hover {
+button:focus {
   outline: none;
 }
 
@@ -119,6 +119,7 @@ input[type=number]::-webkit-outer-spin-button {
     background-color: #75a3c5;
 }
 .footer p {
+  cursor: none;
   width: 35vh;
   text-align: center;
 }
